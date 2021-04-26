@@ -1,5 +1,17 @@
-const myItemsPack = require('../items-again.json');
+const ITEMS_PACK_URL = 'https://gist.githubusercontent.com/ctrl-raul/3b5669e4246bc2d7dc669d484db89062/raw/';
+const itemsPack = await getJson(ITEMS_PACK_URL);
 
+async function getJson () {
+    try {
+        const response = await fetch(url);
+        return await response.json();
+    } catch (err) {
+        // For now we just re-throw the error, delete
+        // the next code line if you wanna do something
+        // else in case it fails to load the JSON
+        throw err;
+    }
+}
 let items = myItemsPack.items;
 
 
