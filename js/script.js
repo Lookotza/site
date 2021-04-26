@@ -14,22 +14,19 @@ async function getJson () {
 }
 let items = myItemsPack.items;
 
+const openBoxBtn = document.getElementById('open-box-btn');
+openBoxBtn.onclick = () => box();
+
+
 
 
 function openBox() {
-    
 
-    document.getElementById('item').style.display = 'block';
+    const img = document.createElement('img');
 
-    const fs = require('fs');
-    
-    const itemList = fs.readdirSync(items);
+    img.src = box();
 
-    document.getElementById('gamer').innerHTML = itemList.length;
-
-
-
-
+    document.body.appendChild(img);
 }
 
 function getTiers(tier) {
@@ -79,16 +76,10 @@ function getItem(RTier){
   
 }
 
-function box(){
-
-    
-var RTier = RandomTier()
-console.log(RTier)
-const image = getItem(RTier)
-
-console.log(image)
-message.channel.send({files: ['./items2/' + image + '.png']})
-
-
-    }
+function box () {
+  const RTier = RandomTier();
+  const image = getItem(RTier);
+  console.log('calling box()', { RTier, image });
+  return `https://raw.githubusercontent.com/Lookotza/site/master/items2/${image}.png`;
+}
 
